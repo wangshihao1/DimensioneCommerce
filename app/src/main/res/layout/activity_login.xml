@@ -25,8 +25,8 @@
             >
             <ImageButton
                 android:id="@+id/login_phone"
-                android:layout_width="@dimen/dp_22"
-                android:layout_height="@dimen/dp_26"
+                android:layout_width="@dimen/dp_20"
+                android:layout_height="@dimen/dp_28"
                 android:layout_marginLeft="10dp"
                 android:background="@drawable/ic_phone"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -71,8 +71,8 @@
             >
             <ImageButton
                 android:id="@+id/login_pass"
-                android:layout_width="@dimen/dp_22"
-                android:layout_height="@dimen/dp_30"
+                android:layout_width="@dimen/dp_20"
+                android:layout_height="@dimen/dp_28"
                 android:layout_marginLeft="@dimen/dp_10"
                 android:background="@mipmap/login_icon_lock"
                 app:layout_constraintBottom_toBottomOf="parent"

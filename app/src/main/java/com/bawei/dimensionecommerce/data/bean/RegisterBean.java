@@ -10,11 +10,7 @@ public class RegisterBean {
 
     private String message;
     private String status;
-    private final String SUCCESS = "0000";
 
-    public boolean getSuccess(){
-        return status.equals(SUCCESS);
-    }
 
     public String getMessage() {
         return message;

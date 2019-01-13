@@ -1,6 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/conslayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/dp_24"
+        android:layout_marginRight="@dimen/dp_24"
+        android:layout_marginTop="@dimen/dp_36"
+        >
+      <ImageButton
+          android:id="@+id/ib_tab_pupb"
+          android:layout_width="@dimen/dp_24"
+          android:layout_height="@dimen/dp_30"
+          android:src="@mipmap/ic_launcher_tab_pupb"
+          />
+        <EditText
+            android:id="@+id/et_search_goods"
+            android:layout_width="@dimen/dp_230"
+            android:layout_height="@dimen/dp_30"
+            app:layout_constraintLeft_toRightOf="@id/ib_tab_pupb"
+            android:layout_marginLeft="@dimen/dp_20"
+            android:hint="请输入你要找的商品"
+            android:textSize="@dimen/sp_12"
+            />
+        <ImageButton
+            android:id="@+id/ib_search"
+            android:layout_width="@dimen/dp_24"
+            android:layout_height="@dimen/dp_30"
+            android:src="@mipmap/ic_launcher_search"
+            app:layout_constraintLeft_toRightOf="@id/et_search_goods"
+            android:layout_marginLeft="@dimen/dp_10"
+            />
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vp_pager"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_164"
+            android:layout_marginTop="@dimen/dp_20"
+            app:layout_constraintTop_toBottomOf="@id/et_search_goods"
+            >
+
+        </android.support.v4.view.ViewPager>
+    </android.support.constraint.ConstraintLayout>
+
+
+</LinearLayout>

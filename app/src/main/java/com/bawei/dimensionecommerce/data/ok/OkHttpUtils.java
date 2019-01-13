@@ -39,7 +39,7 @@ public class OkHttpUtils {
         return instance;
     }
 
-    public void doPost(String url, Map<String,String> map,final ICallBack callback){
+    /*public void doPost(String url, Map<String,String> map,final ICallBack callback){
         FormBody.Builder builder = new FormBody.Builder();
         for (Map.Entry<String,String> entry : map.entrySet()) {
             builder.add(entry.getKey(),entry.getValue());
@@ -77,5 +77,5 @@ public class OkHttpUtils {
             }
         });
 
-    }
+    }*/
 }

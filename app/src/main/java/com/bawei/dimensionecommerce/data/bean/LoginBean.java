@@ -4,7 +4,7 @@ public class LoginBean {
 
 
     /**
-     * result : {"headPic":"http://172.17.8.100/images/small/default/user.jpg","nickName":"HE_02114","phone":"18559556540","sessionId":"15471877506301562","sex":1,"userId":1562}
+     * result : {"headPic":"http://172.17.8.100/images/small/default/user.jpg","nickName":"dR_Dt7q9","phone":"18559556543","sessionId":"15472575098851654","sex":1,"userId":1654}
      * message : 登录成功
      * status : 0000
      */
@@ -12,11 +12,7 @@ public class LoginBean {
     private ResultBean result;
     private String message;
     private String status;
-    private final String SUCCESS_CODE="0000";
 
-    public boolean isSuceess(){
-        return status.equals(SUCCESS_CODE);
-    }
     public ResultBean getResult() {
         return result;
     }
@@ -44,11 +40,11 @@ public class LoginBean {
     public static class ResultBean {
         /**
          * headPic : http://172.17.8.100/images/small/default/user.jpg
-         * nickName : HE_02114
-         * phone : 18559556540
-         * sessionId : 15471877506301562
+         * nickName : dR_Dt7q9
+         * phone : 18559556543
+         * sessionId : 15472575098851654
          * sex : 1
-         * userId : 1562
+         * userId : 1654
          */
 
         private String headPic;

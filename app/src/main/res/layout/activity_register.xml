@@ -4,8 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    android:clipToPadding="true"
     android:background="@mipmap/login_register_background"
     android:orientation="vertical"
     tools:context=".ui.activity.RegisterActivity">
@@ -136,7 +134,7 @@
                 />
         </RadioGroup>
         <EditText
-            android:id="@+id/activity_login_password"
+            android:id="@+id/activity_register_password"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:inputType="number"
@@ -171,7 +169,7 @@
         >
 
         <TextView
-            android:id="@+id/register"
+            android:id="@+id/tv_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintRight_toRightOf="parent"
@@ -183,7 +181,7 @@
     </android.support.constraint.ConstraintLayout>
 
     <Button
-        android:id="@+id/loginSubmit"
+        android:id="@+id/register_Submit"
         android:layout_width="@dimen/dp_280"
         android:layout_height="@dimen/dp_40"
         app:layout_constraintLeft_toLeftOf="parent"

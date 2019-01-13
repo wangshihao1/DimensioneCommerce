@@ -1,35 +1,29 @@
 package com.bawei.dimensionecommerce.ui.activity;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.bawei.dimensionecommerce.R;
 import com.bawei.dimensionecommerce.data.bean.RegisterBean;
-import com.bawei.dimensionecommerce.data.ok.Apis;
-import com.bawei.dimensionecommerce.data.ok.Contans;
-import com.bawei.dimensionecommerce.di.contract.IContract;
-import com.bawei.dimensionecommerce.di.presenter.ILoginRegisterPresenter;
-
-import java.util.HashMap;
-import java.util.Map;
+import com.bawei.dimensionecommerce.di.contract.IContractRegister;
+import com.bawei.dimensionecommerce.di.presenter.IRegisterPresenterImp;
+import com.google.gson.Gson;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class RegisterActivity extends AppCompatActivity implements IContract.IView {
+public class RegisterActivity extends AppCompatActivity implements IContractRegister.IRegisterView {
+
 
     @BindView(R.id.login_phone)
     ImageButton loginPhone;
@@ -53,63 +47,58 @@ public class RegisterActivity extends AppCompatActivity implements IContract.IVi
     ImageButton loginPass;
     @BindView(R.id.pass_group)
     RadioGroup passGroup;
-    @BindView(R.id.activity_login_password)
-    EditText activityLoginPassword;
+    @BindView(R.id.activity_register_password)
+    EditText activityRegisterPassword;
     @BindView(R.id.Passwordswitching)
     ImageButton Passwordswitching;
     @BindView(R.id.buju2)
     ConstraintLayout buju2;
-    @BindView(R.id.register)
-    TextView register;
-    @BindView(R.id.loginSubmit)
-    Button loginSubmit;
-    private ILoginRegisterPresenter presenter;
+    @BindView(R.id.tv_register)
+    TextView tvRegister;
+    @BindView(R.id.register_Submit)
+    Button registerSubmit;
+    private IRegisterPresenterImp presenter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         ButterKnife.bind(this);
-        presenter = new ILoginRegisterPresenter();
+        presenter = new IRegisterPresenterImp();
         presenter.attachView(this);
 
     }
 
-    @OnClick({R.id.register, R.id.loginSubmit})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.register:
-                Intent intent = new Intent(this, LoginActivity.class);
-                startActivity(intent);
-                finish();
-                break;
-            case R.id.loginSubmit:
-                loadData();
-                break;
-                default:
-                    break;
-        }
-    }
 
-    private void loadData() {
-        Map<String, String> parmas = new HashMap<>();
-        parmas.put(Contans.POST_REGISTER_KEY_PHONE, activityLoginPhone.getText().toString().trim());
-        parmas.put(Contans.POST_REGISTER_KEY_PASSWORD, activityLoginPassword.getText().toString().trim());
-        presenter.requstRegisterData(Apis.REGISTER_URL, parmas, RegisterBean.class);
+    @Override
+    public void showData(String responseData) {
+        Gson gson = new Gson();
+        RegisterBean registerBean = gson.fromJson(responseData,RegisterBean.class);
+        if (registerBean.getStatus().equals("0000")) {
+            Toast.makeText(this, "注册成功", Toast.LENGTH_LONG).show();
+            startActivity(new Intent(this,LoginActivity.class));
+        } else if (registerBean.getStatus().equals("1001")) {
+            Toast.makeText(this, "该手机号已注册，不能重复注册！", Toast.LENGTH_LONG).show();
+        }
     }
 
 
     @Override
-    public void showData(Object responseData) {
-        if (responseData instanceof RegisterBean) {
-            RegisterBean bean = (RegisterBean) responseData;
-            if (bean == null || !bean.getSuccess()) {
-                Toast.makeText(RegisterActivity.this, bean.getMessage(), Toast.LENGTH_SHORT).show();
-            } else {
-                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                startActivity(intent);
-                finish();
-            }
+    protected void onDestroy() {
+        super.onDestroy();
+        presenter.detachView(this);
+    }
+
+    @OnClick({R.id.tv_register, R.id.register_Submit})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.tv_register:
+                break;
+            case R.id.register_Submit:
+                String phone = activityLoginPhone.getText().toString().trim();
+                String pwd = activityRegisterPassword.getText().toString().trim();
+                presenter.ruquestRegisterData(phone,pwd);
+                break;
         }
     }
 
